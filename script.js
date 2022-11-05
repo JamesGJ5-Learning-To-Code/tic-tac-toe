@@ -1,9 +1,18 @@
 // Load the container grid from index.html
+
 const gridDiv = document.querySelector('.grid');
 
 // Create two Players
 // Factory
 // Single attribute must be contained in each for now: their marker (as a string)
+
+const Player = (marker) => {
+    // TODO: add name property when improving the interface
+    return {marker};
+}
+
+// player1 = Player("X")
+// console.log(player1.marker)
 
 // Create Gameboard
 // Module
