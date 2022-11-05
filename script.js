@@ -1,4 +1,6 @@
 // Load the container grid from index.html
+// TODO: later, maybe put even the below query selection into one of the modules
+// or factories, considering displayController first
 
 const gridDiv = document.querySelector('.grid');
 
