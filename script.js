@@ -36,8 +36,8 @@ const gameboard = (() => {
 // -- Returns undefined to displayController (can simply use 'return;')
 
 const game = (() => {
-    player1 = Player('X');
-    player2 = Player('O');
+    const player1 = Player('X');
+    const player2 = Player('O');
 })();
 
 // Create a displayController object
