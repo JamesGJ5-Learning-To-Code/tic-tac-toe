@@ -1,13 +1,3 @@
-// Load the container grid from index.html
-// TODO: later, maybe put even the below query selection into one of the modules
-// or factories, considering displayController first
-
-const gridDiv = document.querySelector('.grid');
-
-// Create two Players
-// Factory
-// Single attribute must be contained in each for now: their marker (as a string)
-
 const Player = (marker) => {
     // TODO: add name property when improving the interface
     return {marker};
@@ -15,10 +5,6 @@ const Player = (marker) => {
 
 // player1 = Player("X")
 // console.log(player1.marker)
-
-// Create Gameboard
-// Module
-// Contains an array of length 9, initialised with empty elements
 
 const gameboard = (() => {
     const gameboardArray = Array(9);
@@ -62,3 +48,7 @@ const game = (() => {
 // 2. Supplies the class of the div to Game
 // 3. Gets back from the Game the marker of the player whose turn it is if 
 // anything should be played, else undefined
+
+const displayController = (() => {
+    const gridDiv = document.querySelector('.grid');
+})
