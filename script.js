@@ -1,4 +1,5 @@
 // Load the container grid from index.html
+const gridDiv = document.querySelector('.grid');
 
 // Create two Players
 // Factory
