@@ -51,4 +51,4 @@ const game = (() => {
 
 const displayController = (() => {
     const gridDiv = document.querySelector('.grid');
-})
+})();
