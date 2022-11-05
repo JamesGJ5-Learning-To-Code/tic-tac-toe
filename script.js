@@ -49,6 +49,11 @@ const gameboard = (() => {
 // Else:
 // -- Returns undefined to displayController (can simply use 'return;')
 
+const game = (() => {
+    player1 = Player('X');
+    player2 = Player('O');
+})();
+
 // Create a displayController object
 // Module
 // This should have a method that takes the container grid and adds event listeners 
