@@ -36,6 +36,7 @@ const gameboard = (() => {
 // Module
 // Takes the two Players for creation, as well as the Gameboard
 // Upon receiving the class of the clicked div from displayController:
+// NOTE: the below will be enabled through methods belonging to gameboard
 // 1. Checks that the index of Gameboard equal to Number(class) is not already 
 // occupied.
 // 2. If not:
