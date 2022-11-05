@@ -2,7 +2,7 @@
 
 1. Store gameboard as array in Gameboard object
 - Gameboard will be made using a module
-- Just going to store it as an array with 9 spaces; initially, going to have it contain null values
+- Just going to store it as an array with 9 spaces; initially, going to have it contain empty values
 2. Players stored in objects
 - Players will be made using factory functions
 - Will have to store a player's marker as a property
@@ -34,7 +34,7 @@
 -- To check for a horizontal 3 in a row, it would be if, in the gameboard array, 3 consecutive index positions all had one player's marker in it. The combination of indices would be: 0, 1, 2; 3, 4, 5; or 6, 7, 8. Increments of 1.
 -- To check for a diagonal 3 in a row, the combinations would simply be 0, 4, 8; or 2, 4, 6. Increments of 4 and 2 respectively.
 - To check for a vertical 3 in a row, the combinations would be 0, 3, 6; 1, 4, 7; or 2, 5, 8. Increments of 3.
-- To check for a tie, a simple way would be one that works in the event a game becomes a tie, but doesn't work right away. Simplest thing to do would be to, if the gameboard array is full of non-null values and no one has won, then register a tie--if players notice a tie is the case earlier before filling up the gameboard array, they can restart if they really want to. It's only 9 goes in total at the most anyway.
+- To check for a tie, a simple way would be one that works in the event a game becomes a tie, but doesn't work right away. Simplest thing to do would be to, if the gameboard array is full of non-empty values and no one has won, then register a tie--if players notice a tie is the case earlier before filling up the gameboard array, they can restart if they really want to. It's only 9 goes in total at the most anyway.
 
 # Interface
 

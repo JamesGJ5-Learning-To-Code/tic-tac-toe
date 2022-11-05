@@ -18,7 +18,19 @@ const Player = (marker) => {
 
 // Create Gameboard
 // Module
-// Contains an array of length 9, initialised with values of null
+// Contains an array of length 9, initialised with empty elements
+
+const gameboard = (() => {
+    const gameboardArray = Array(9);
+    // console.log(gameboardArray);
+    const placeMarker = (marker, index) => {
+        gameboardArray[index] = marker;
+        // console.log(gameboardArray);
+    };
+    return {placeMarker};
+})();
+
+// gameboard.placeMarker("X", 6);
 
 // Create Game
 // Module
