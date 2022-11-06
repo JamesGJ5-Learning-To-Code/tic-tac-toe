@@ -77,15 +77,16 @@ const displayController = (() => {
     const cellDivList = gridDiv.childNodes;
     cellDivList.forEach((cellDiv) => {
         cellDiv.addEventListener('click', () => {
-            if (!resultDiv.textContent && !cellDiv.textContent) {
-                index = parseInt(cellDiv.className);
-                marker = game.play(index);
-                cellDiv.textContent = marker;
-                if (gameboard.checkForWin(marker)) {
-                    resultDiv.textContent = `${marker} wins!`;
-                } else if (gameboard.checkForTie()) {
-                    resultDiv.textContent = 'Tie!';
-                };
+            if (resultDiv.textContent || cellDiv.textContent) {
+                return;
+            };
+            index = parseInt(cellDiv.className);
+            marker = game.play(index);
+            cellDiv.textContent = marker;
+            if (gameboard.checkForWin(marker)) {
+                resultDiv.textContent = `${marker} wins!`;
+            } else if (gameboard.checkForTie()) {
+                resultDiv.textContent = 'Tie!';
             };
         });
     });
