@@ -58,6 +58,7 @@ const gameboard = (() => {
         );
     };
     const checkForTie = () => {
+        // TODO: permit ties to be noticed earlier
         return markerCount === gameboardArray.length;
     };
     return {placeMarker, checkForWin, checkForTie};
