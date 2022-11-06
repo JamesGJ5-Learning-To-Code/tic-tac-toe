@@ -1,6 +1,6 @@
 const Player = (marker) => {
-    // TODO: add name property when improving the interface
-    return {marker};
+    const playerName = prompt(`Marker ${marker} belongs to...`, `Player ${marker}`);
+    return {playerName, marker};
 }
 
 const gameboard = (() => {
@@ -67,15 +67,14 @@ const game = (() => {
     const player1 = Player('X');
     const player2 = Player('O');
     let currentPlayer = player1;
-    let marker;
+    let lastPlayer = player2;
     const play = (index) => {
-        marker = currentPlayer.marker;
-        gameboard.placeMarker(marker, index);
+        gameboard.placeMarker(currentPlayer.marker, index);
         _switchPlayer();
-        return marker;
+        return lastPlayer;
     };
     const _switchPlayer = () => {
-        currentPlayer = (currentPlayer === player1) ? player2 : player1
+        [currentPlayer, lastPlayer] = [lastPlayer, currentPlayer];
     };
     return {play};
 })();
@@ -90,17 +89,17 @@ const displayController = (() => {
                 return;
             };
             index = parseInt(cellDiv.className);
-            marker = game.play(index);
-            _displayMarker(cellDiv, marker);
-            _showResult(marker);
+            lastPlayer = game.play(index);
+            _displayMarker(cellDiv, lastPlayer.marker);
+            _showResult(lastPlayer);
         });
     });
     const _displayMarker = (cellDiv, marker) => {
         cellDiv.textContent = marker;
     };
-    const _showResult = (marker) => {
-        if (gameboard.checkForWin(marker)) {
-            resultDiv.textContent = `${marker} wins!`;
+    const _showResult = (lastPlayer) => {
+        if (gameboard.checkForWin(lastPlayer.marker)) {
+            resultDiv.textContent = `${lastPlayer.playerName} wins!`;
         } else if (gameboard.checkForTie()) {
             resultDiv.textContent = 'Tie!';
         };
