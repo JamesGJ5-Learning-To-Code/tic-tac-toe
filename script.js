@@ -11,7 +11,7 @@ const gameboard = (() => {
     // console.log(gameboardArray);
     const placeMarker = (marker, index) => {
         gameboardArray[index] = marker;
-        // console.log(gameboardArray);
+        console.log(gameboardArray);
     };
     return {placeMarker};
 })();
@@ -23,7 +23,7 @@ const gameboard = (() => {
 // DONE Creates two Players
 // Upon receiving the class of the clicked div from displayController:
 // NOTE: the below will be enabled through methods belonging to gameboard
-// 1) Fills the index with the relevant marker
+// 1) DONE Fills the index with the relevant marker
 // 2) Does a win-check (see README.md). If someone wins:
 // -- a) Make displayController announce a winner (e.g. by alert, can just alert 
 //      the marker for now)
@@ -33,23 +33,43 @@ const gameboard = (() => {
 const game = (() => {
     const player1 = Player('X');
     const player2 = Player('O');
+    let currentPlayer = player1;
+    let marker;
+    const play = (index) => {
+        // TODO: put the player-switching logic into its own method
+        marker = currentPlayer.marker;
+        gameboard.placeMarker(marker, index);
+        if (currentPlayer === player1) {
+            currentPlayer = player2;
+        } else {
+            currentPlayer = player1;
+        };
+        return marker;
+    };
+    return {play};
 })();
 
 // Create a displayController object
 // Module
 // This should have a method that takes the container grid and adds event listeners 
 // to it that, ultimately:
-// 1. Check for a click (in displayController)
+// 1. DONE Check for a click (in displayController)
 // 2. Check if the div is filled already. If not:
-//  a) Supplies the class of the div to Game
-//  b) Gets back from the Game the marker of the player whose turn it is
+//  a) DONE Supplies the class of the div to Game
+//  b) DONE Gets back from the Game the marker of the player whose turn it is
+//  c) DONE Sets the marker as the div's textContent
 
 const displayController = (() => {
     const gridDiv = document.querySelector('.grid');
-    // const cellDivList = gridDiv.childNodes;
-    // cellDivList.forEach((cellDiv) => {
-    //     cellDiv.addEventListener('click', () => {
-            
-    //     });
-    // });
+    const cellDivList = gridDiv.childNodes;
+    cellDivList.forEach((cellDiv) => {
+        cellDiv.addEventListener('click', () => {
+            if (!cellDiv.textContent) {
+                index = parseInt(cellDiv.className);
+                // console.log(index);
+                marker = game.play(index);
+                cellDiv.textContent = marker;
+            };
+        });
+    });
 })();
