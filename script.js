@@ -71,10 +71,10 @@ const game = (() => {
     let lastPlayer = player2;
     const play = (index) => {
         gameboard.placeMarker(currentPlayer.marker, index);
-        _switchPlayer();
+        _switchTurn();
         return lastPlayer;
     };
-    const _switchPlayer = () => {
+    const _switchTurn = () => {
         [currentPlayer, lastPlayer] = [lastPlayer, currentPlayer];
     };
     return {play};
