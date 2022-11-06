@@ -80,12 +80,18 @@ const displayController = (() => {
             };
             index = parseInt(cellDiv.className);
             marker = game.play(index);
-            cellDiv.textContent = marker;
-            if (gameboard.checkForWin(marker)) {
-                resultDiv.textContent = `${marker} wins!`;
-            } else if (gameboard.checkForTie()) {
-                resultDiv.textContent = 'Tie!';
-            };
+            _displayMarker(cellDiv, marker);
+            _showResult(marker);
         });
     });
+    const _displayMarker = (cellDiv, marker) => {
+        cellDiv.textContent = marker;
+    };
+    const _showResult = (marker) => {
+        if (gameboard.checkForWin(marker)) {
+            resultDiv.textContent = `${marker} wins!`;
+        } else if (gameboard.checkForTie()) {
+            resultDiv.textContent = 'Tie!';
+        };
+    };
 })();
