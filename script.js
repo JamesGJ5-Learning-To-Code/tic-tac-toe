@@ -8,10 +8,12 @@ const Player = (marker) => {
 
 const gameboard = (() => {
     const gameboardArray = Array(9);
+    let markerCount = 0;
     // console.log(gameboardArray);
     const placeMarker = (marker, index) => {
         gameboardArray[index] = marker;
         console.log(gameboardArray);
+        markerCount++;
     };
     const checkForWin = (marker) => {
         // TODO: make the below more concise
@@ -49,7 +51,10 @@ const gameboard = (() => {
             gameboardArray[8] === marker
         );
     };
-    return {placeMarker, checkForWin};
+    const checkForTie = () => {
+        return markerCount === gameboardArray.length;
+    };
+    return {placeMarker, checkForWin, checkForTie};
 })();
 
 // gameboard.placeMarker("X", 6);
@@ -109,6 +114,8 @@ const displayController = (() => {
                 cellDiv.textContent = marker;
                 if (gameboard.checkForWin(marker)) {
                     resultDiv.textContent = `${marker} wins!`;
+                } else if (gameboard.checkForTie()) {
+                    resultDiv.textContent = 'Tie!';
                 };
             };
         });
