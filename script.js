@@ -13,7 +13,43 @@ const gameboard = (() => {
         gameboardArray[index] = marker;
         console.log(gameboardArray);
     };
-    return {placeMarker};
+    const checkForWin = (marker) => {
+        // TODO: make the below more concise
+        return (
+            gameboardArray[0] === marker && 
+            gameboardArray[1] === marker && 
+            gameboardArray[2] === marker || 
+
+            gameboardArray[3] === marker && 
+            gameboardArray[4] === marker && 
+            gameboardArray[5] === marker || 
+
+            gameboardArray[6] === marker && 
+            gameboardArray[7] === marker && 
+            gameboardArray[8] === marker || 
+
+            gameboardArray[0] === marker && 
+            gameboardArray[4] === marker && 
+            gameboardArray[8] === marker ||
+
+            gameboardArray[2] === marker && 
+            gameboardArray[4] === marker && 
+            gameboardArray[6] === marker || 
+
+            gameboardArray[0] === marker && 
+            gameboardArray[3] === marker && 
+            gameboardArray[6] === marker || 
+
+            gameboardArray[1] === marker && 
+            gameboardArray[4] === marker && 
+            gameboardArray[7] === marker || 
+
+            gameboardArray[2] === marker && 
+            gameboardArray[5] === marker && 
+            gameboardArray[8] === marker
+        );
+    };
+    return {placeMarker, checkForWin};
 })();
 
 // gameboard.placeMarker("X", 6);
@@ -25,10 +61,11 @@ const gameboard = (() => {
 // NOTE: the below will be enabled through methods belonging to gameboard
 // 1) DONE Fills the index with the relevant marker
 // 2) Does a win-check (see README.md). If someone wins:
-// -- a) Make displayController announce a winner (e.g. by alert, can just alert 
-//      the marker for now)
-// -- b) Make displayController disable the event listeners
-//  3) Returns the marker to displayController
+// -- a) DONE Make displayController announce a winner (just using a result div because 
+//    alert() is synchronous, meaning, without extra code, it occurs before 
+//    the div is filled)
+// -- b) DONE Make displayController disable the event listeners
+//  3) DONE Returns the marker to displayController
 
 const game = (() => {
     const player1 = Player('X');
@@ -61,14 +98,18 @@ const game = (() => {
 
 const displayController = (() => {
     const gridDiv = document.querySelector('.grid');
+    const resultDiv = document.querySelector('.result')
     const cellDivList = gridDiv.childNodes;
     cellDivList.forEach((cellDiv) => {
         cellDiv.addEventListener('click', () => {
-            if (!cellDiv.textContent) {
+            if (!resultDiv.textContent && !cellDiv.textContent) {
                 index = parseInt(cellDiv.className);
                 // console.log(index);
                 marker = game.play(index);
                 cellDiv.textContent = marker;
+                if (gameboard.checkForWin(marker)) {
+                    resultDiv.textContent = `${marker} wins!`;
+                };
             };
         });
     });
