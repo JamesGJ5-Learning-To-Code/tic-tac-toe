@@ -75,7 +75,7 @@ const displayController = (() => {
     const cellDivList = gridDiv.childNodes;
     cellDivList.forEach((cellDiv) => {
         cellDiv.addEventListener('click', () => {
-            if (resultDiv.textContent || cellDiv.textContent) {
+            if (cellDiv.textContent || resultDiv.textContent) {
                 return;
             };
             index = parseInt(cellDiv.className);
