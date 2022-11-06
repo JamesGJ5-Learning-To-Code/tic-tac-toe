@@ -58,15 +58,13 @@ const game = (() => {
     let currentPlayer = player1;
     let marker;
     const play = (index) => {
-        // TODO: put the player-switching logic into its own method
         marker = currentPlayer.marker;
         gameboard.placeMarker(marker, index);
-        if (currentPlayer === player1) {
-            currentPlayer = player2;
-        } else {
-            currentPlayer = player1;
-        };
+        _switchPlayer();
         return marker;
+    };
+    const _switchPlayer = () => {
+        currentPlayer = (currentPlayer === player1) ? player2 : player1
     };
     return {play};
 })();
