@@ -12,38 +12,49 @@ const gameboard = (() => {
     };
     const checkForWin = (marker) => {
         // TODO: make the below more concise
+        const _checkRows = (marker) => {
+            return (
+                gameboardArray[0] === marker && 
+                gameboardArray[1] === marker && 
+                gameboardArray[2] === marker || 
+
+                gameboardArray[3] === marker && 
+                gameboardArray[4] === marker && 
+                gameboardArray[5] === marker || 
+
+                gameboardArray[6] === marker && 
+                gameboardArray[7] === marker && 
+                gameboardArray[8] === marker
+            );
+        };
+        const _checkColumns = (marker) => {
+            return (
+                gameboardArray[0] === marker && 
+                gameboardArray[3] === marker && 
+                gameboardArray[6] === marker || 
+    
+                gameboardArray[1] === marker && 
+                gameboardArray[4] === marker && 
+                gameboardArray[7] === marker || 
+    
+                gameboardArray[2] === marker && 
+                gameboardArray[5] === marker && 
+                gameboardArray[8] === marker
+            );
+        };
+        const _checkDiagonals = (marker) => {
+            return (
+                gameboardArray[0] === marker && 
+                gameboardArray[4] === marker && 
+                gameboardArray[8] === marker ||
+
+                gameboardArray[2] === marker && 
+                gameboardArray[4] === marker && 
+                gameboardArray[6] === marker
+            );
+        };
         return (
-            gameboardArray[0] === marker && 
-            gameboardArray[1] === marker && 
-            gameboardArray[2] === marker || 
-
-            gameboardArray[3] === marker && 
-            gameboardArray[4] === marker && 
-            gameboardArray[5] === marker || 
-
-            gameboardArray[6] === marker && 
-            gameboardArray[7] === marker && 
-            gameboardArray[8] === marker || 
-
-            gameboardArray[0] === marker && 
-            gameboardArray[4] === marker && 
-            gameboardArray[8] === marker ||
-
-            gameboardArray[2] === marker && 
-            gameboardArray[4] === marker && 
-            gameboardArray[6] === marker || 
-
-            gameboardArray[0] === marker && 
-            gameboardArray[3] === marker && 
-            gameboardArray[6] === marker || 
-
-            gameboardArray[1] === marker && 
-            gameboardArray[4] === marker && 
-            gameboardArray[7] === marker || 
-
-            gameboardArray[2] === marker && 
-            gameboardArray[5] === marker && 
-            gameboardArray[8] === marker
+            _checkRows(marker) || _checkColumns(marker) || _checkDiagonals(marker)
         );
     };
     const checkForTie = () => {
