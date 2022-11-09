@@ -11,7 +11,7 @@ const gameboard = (() => {
         markerCount++;
     };
     const checkForWin = (marker) => {
-        // TODO: make the below more concise
+        // TODO: make the below more concise using for loops
         const _checkRows = (marker) => {
             return (
                 gameboardArray[0] === marker && 
